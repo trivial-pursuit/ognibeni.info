@@ -10,3 +10,6 @@ out/
 
 # Thumbnails
 ._*
+
+# auto-generated files
+assets/css/styles.css*
