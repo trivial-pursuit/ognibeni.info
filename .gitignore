@@ -1,0 +1,12 @@
+### IntelliJ IDEA
+# User-specific stuff
+.idea/
+out/
+
+### macOS template
+# General
+.DS_Store
+.AppleDouble
+
+# Thumbnails
+._*
