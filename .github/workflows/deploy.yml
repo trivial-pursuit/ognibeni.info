@@ -1,0 +1,53 @@
+name: Build and Deploy Website
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+    # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '21.x'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+
+      - name: Upload generated CSS
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated_css
+          path: build
+
+  deployment:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: PROD
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download generated CSS
+        uses: actions/download-artifact@v4
+        with:
+          name: generated_css
+
+      - name: Publish
+        uses: nogsantos/scp-deploy@v1.3.0
+        with:
+          src: ./assets *.html LICENSE.txt
+          host: ${{ vars.SSH_HOST }}
+          port: ${{ vars.SSH_PORT }}
+          remote: ${{ vars.SSH_DIR }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}

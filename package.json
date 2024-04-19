@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "compile:sass": "sass sass/main.scss assets/css/styles.css -w",
-    "build": "sass sass/main.scss assets/css/styles.css"
+    "build": "sass sass/main.scss build/assets/css/styles.css"
   },
   "repository": {
     "type": "git",
