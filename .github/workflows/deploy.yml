@@ -13,8 +13,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - name: Copy necessary files to build directory
+        run: |
+          mkdir build
+          cp -r assets build/
+          cp *.html build/
+          cp LICENSE.txt build/
 
-      - name: Use Node.js
+      - name: Build using Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '21.x'
@@ -35,19 +41,17 @@ jobs:
     needs: build
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Download generated CSS
+      - name: Download build directory
         uses: actions/download-artifact@v4
         with:
           name: generated_css
 
       - name: Publish
-        uses: nogsantos/scp-deploy@v1.3.0
+        uses: burnett01/rsync-deployments@7.0.1
         with:
-          src: ./assets *.html LICENSE.txt
-          host: ${{ vars.SSH_HOST }}
-          port: ${{ vars.SSH_PORT }}
-          remote: ${{ vars.SSH_DIR }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          switches: -acvz --delete
+          path: ./
+          remote_path: ${{ vars.SSH_DIR }}
+          remote_host: ${{ vars.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_KEY }}
