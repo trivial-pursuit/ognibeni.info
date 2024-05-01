@@ -22,6 +22,11 @@
 		small:   ( null,    736px  )
 	));
 
+// Colors
+	$primary-light: #7F98FA;
+	$primary-regular: #6F88E8;
+	$primary-dark: #5F78D9;
+
 // Reset.
 // Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain)
 
@@ -450,7 +455,7 @@
 		line-height: 4em;
 
 		&:hover {
-			background-color: #f98780;
+			background-color: $primary-light;
 		}
 
 		&.large {
@@ -459,15 +464,15 @@
 		}
 
 		&.style1 {
-			background: #e97770 url('images/overlay.png');
+			background: $primary-regular url('images/overlay.png');
 			color: #fff;
 
 			&:hover {
-				background-color: #f98780;
+				background-color: $primary-light;
 			}
 
 			&:active {
-				background-color: #d96760;
+				background-color: $primary-dark;
 			}
 		}
 
@@ -606,7 +611,7 @@
 		}
 
 		h3 {
-			color: #e97770 !important;
+			color: $primary-regular !important;
 			margin: -0.35em 0 0.75em 0;
 			font-size: 1.15em;
 			letter-spacing: 0.05em;
@@ -754,12 +759,12 @@
 		}
 
 		&.style1 {
-			background: #e97770 url('images/overlay.png');
+			background: $primary-regular url('images/overlay.png');
 			color: #eee;
 			color: rgba(255, 255, 255, 0.75);
 
 			.title {
-				background: #e97770 url('images/overlay.png');
+				background: $primary-regular url('images/overlay.png');
 				color: #fff;
 			}
 
@@ -1016,7 +1021,7 @@
 			text-align: center;
 
 			h3 {
-				color: #e97770;
+				color: $primary-regular;
 				margin: 0 0 0.75em 0;
 				font-size: 1.15em;
 				letter-spacing: 0.05em;
