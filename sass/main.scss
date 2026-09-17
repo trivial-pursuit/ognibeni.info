@@ -1,9 +1,9 @@
-@import 'libs/vars';
-@import 'libs/functions';
-@import 'libs/mixins';
-@import 'libs/vendor';
-@import 'libs/breakpoints';
-@import 'libs/html-grid';
+@use 'libs/vars';
+@use 'libs/functions';
+@use 'libs/mixins';
+@use 'libs/vendor';
+@use 'libs/breakpoints';
+@use 'libs/html-grid';
 @import url('fontawesome-all.min.css');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,700,900');
 
@@ -15,7 +15,7 @@
 
 // Breakpoints.
 
-	@include breakpoints((
+	@include breakpoints.breakpoints((
 		xlarge:  ( 1281px,  1680px ),
 		large:   ( 981px,   1280px ),
 		medium:  ( 737px,   980px  ),
@@ -119,8 +119,8 @@
 		// Stops initial animations until page loads.
 			&.is-preload {
 				*, *:before, *:after {
-					@include vendor('animation', 'none !important');
-					@include vendor('transition', 'none !important');
+					@include vendor.vendor('animation', 'none !important');
+					@include vendor.vendor('transition', 'none !important');
 				}
 			}
 
@@ -146,7 +146,7 @@
 	}
 
 	a {
-		@include vendor('transition', 'color .25s ease-in-out');
+		@include vendor.vendor('transition', 'color .25s ease-in-out');
 		text-decoration: underline;
 		color: #717479;
 
@@ -207,19 +207,19 @@
 		max-width: 100%;
 		width: 68em;
 
-		@include breakpoint('<=xlarge') {
+		@include breakpoints.breakpoint('<=xlarge') {
 			width: 70em;
 		}
 
-		@include breakpoint('<=large') {
+		@include breakpoints.breakpoint('<=large') {
 			width: calc(100% - 100px);
 		}
 
-		@include breakpoint('<=medium') {
+		@include breakpoints.breakpoint('<=medium') {
 			width: calc(100% - 100px);
 		}
 
-		@include breakpoint('<=small') {
+		@include breakpoints.breakpoint('<=small') {
 			width: calc(100% - 40px);
 		}
 	}
@@ -227,22 +227,22 @@
 /* Row */
 
 	.row {
-		@include html-grid((50px, 50px));
+		@include html-grid.html-grid((50px, 50px));
 
-		@include breakpoint('<=xlarge') {
-			@include html-grid((50px, 50px), 'xlarge');
+		@include breakpoints.breakpoint('<=xlarge') {
+			@include html-grid.html-grid((50px, 50px), 'xlarge');
 		}
 
-		@include breakpoint('<=large') {
-			@include html-grid((35px, 35px), 'large');
+		@include breakpoints.breakpoint('<=large') {
+			@include html-grid.html-grid((35px, 35px), 'large');
 		}
 
-		@include breakpoint('<=medium') {
-			@include html-grid((50px, 50px), 'medium');
+		@include breakpoints.breakpoint('<=medium') {
+			@include html-grid.html-grid((50px, 50px), 'medium');
 		}
 
-		@include breakpoint('<=small') {
-			@include html-grid((30px, 30px), 'small');
+		@include breakpoints.breakpoint('<=small') {
+			@include html-grid.html-grid((30px, 30px), 'small');
 		}
 	}
 
@@ -333,7 +333,7 @@
 		input[type="password"],
 		select,
 		textarea {
-			@include vendor('transition', 'all .25s ease-in-out');
+			@include vendor.vendor('transition', 'all .25s ease-in-out');
 			-webkit-appearance: none;
 			display: block;
 			border: 0;
@@ -436,7 +436,7 @@
 	input[type="reset"],
 	button,
 	.button {
-		@include vendor('transition', 'all .25s ease-in-out');
+		@include vendor.vendor('transition', 'all .25s ease-in-out');
 		display: inline-block;
 		background: #444;
 		text-align: center;
@@ -603,7 +603,7 @@
 			position: relative;
 		}
 
-		@include breakpoint('>medium') {
+		@include breakpoints.breakpoint('>medium') {
 			> .row > :nth-child(-n + 2) > section {
 				border-top: 0;
 				padding-top: 0;
@@ -648,7 +648,7 @@
 /* Icons */
 
 	.icon {
-		@include icon;
+		@include mixins.icon;
 		text-decoration: none;
 
 		&:before {
@@ -747,7 +747,7 @@
 			}
 
 			&:after {
-				@include vendor('transform', 'scaleX(-1)');
+				@include vendor.vendor('transform', 'scaleX(-1)');
 				content: '';
 				position: absolute;
 				bottom: -38px;
@@ -807,9 +807,9 @@
 /* Header */
 
 	#header {
-		@include vendor('display', 'flex');
-		@include vendor('align-items', 'center');
-		@include vendor('justify-content', 'center');
+		@include vendor.vendor('display', 'flex');
+		@include vendor.vendor('align-items', 'center');
+		@include vendor.vendor('justify-content', 'center');
 		position: relative;
 		height: 24em;
 		background: url('../images/banner.jpg') center center;
@@ -936,7 +936,7 @@
 		}
 
 		a, span {
-			@include vendor('transition', 'all .25s ease-in-out');
+			@include vendor.vendor('transition', 'all .25s ease-in-out');
 			display: block;
 			color: #eee;
 			color: rgba(255, 255, 255, 0.75);
@@ -1169,7 +1169,7 @@
 
 /* XLarge */
 
-	@include breakpoint('<=xlarge') {
+	@include breakpoints.breakpoint('<=xlarge') {
 
 		/* Basic */
 			body, input, textarea, select {
@@ -1180,7 +1180,7 @@
 
 /* Large */
 
-	@include breakpoint('<=large') {
+	@include breakpoints.breakpoint('<=large') {
 
 		/* Basic */
 
@@ -1249,7 +1249,7 @@
 		display: none;
 	}
 
-	@include breakpoint('<=medium') {
+	@include breakpoints.breakpoint('<=medium') {
 
 		/* Section/Article */
 
@@ -1319,7 +1319,7 @@
 					border-top: solid 1px rgba(255, 255, 255, 0.05);
 					padding-top: 4em;
 
-					@include breakpoint('>small') {
+					@include breakpoints.breakpoint('>small') {
 						> .row > :nth-child(2) > section {
 							border-top: 0;
 							padding-top: 0;
@@ -1331,21 +1331,21 @@
 		/* Nav */
 
 			#page-wrapper {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transition', 'transform #{functions.duration(navPanel)} ease');
 				padding-bottom: 1px;
 			}
 
 			#titleBar {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transition', 'transform #{_duration(navPanel)} ease');
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transition', 'transform #{functions.duration(navPanel)} ease');
 				display: block;
 				height: 44px;
 				left: 0;
 				position: fixed;
 				top: 0;
 				width: 100%;
-				z-index: _misc(z-index-base) + 1;
+				z-index: functions.misc(z-index-base) + 1;
 				background: none;
 
 				.title {
@@ -1353,7 +1353,7 @@
 				}
 
 				.toggle {
-					@include icon(false, solid);
+					@include mixins.icon(false, solid);
 					position: absolute;
 					top: 0;
 					left: 0;
@@ -1361,7 +1361,7 @@
 					height: 44px;
 
 					&:before {
-						@include vendor('transition', 'all .15s ease-in-out');
+						@include vendor.vendor('transition', 'all .15s ease-in-out');
 					
 						text-decoration: none;
 						content: '\f0c9';
@@ -1387,17 +1387,17 @@
 			}
 
 			#navPanel {
-				@include vendor('backface-visibility', 'hidden');
-				@include vendor('transform', 'translateX(#{_size(navPanel) * -1})');
-				@include vendor('transition', ('transform #{_duration(navPanel)} ease'));
+				@include vendor.vendor('backface-visibility', 'hidden');
+				@include vendor.vendor('transform', 'translateX(#{functions.size(navPanel) * -1})');
+				@include vendor.vendor('transition', ('transform #{functions.duration(navPanel)} ease'));
 				display: block;
 				height: 100%;
 				left: 0;
 				overflow-y: auto;
 				position: fixed;
 				top: 0;
-				width: _size(navPanel);
-				z-index: _misc(z-index-base) + 2;
+				width: functions.size(navPanel);
+				z-index: functions.misc(z-index-base) + 2;
 				background: #242730 url('images/overlay.png');
 				box-shadow: inset -3px 0px 4px 0px rgba(0, 0, 0, 0.1);
 
@@ -1452,15 +1452,15 @@
 			body {
 				&.navPanel-visible {
 					#page-wrapper {
-						@include vendor('transform', 'translateX(#{_size(navPanel)})');
+						@include vendor.vendor('transform', 'translateX(#{functions.size(navPanel)})');
 					}
 
 					#titleBar {
-						@include vendor('transform', 'translateX(#{_size(navPanel)})');
+						@include vendor.vendor('transform', 'translateX(#{functions.size(navPanel)})');
 					}
 
 					#navPanel {
-						@include vendor('transform', 'translateX(0)');
+						@include vendor.vendor('transform', 'translateX(0)');
 					}
 				}
 			}
@@ -1469,7 +1469,7 @@
 
 /* Small */
 
-	@include breakpoint('<=small') {
+	@include breakpoints.breakpoint('<=small') {
 
 		/* Basic */
 
