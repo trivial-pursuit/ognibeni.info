@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Copy necessary files to build directory
         run: |
           mkdir build
@@ -21,7 +21,7 @@ jobs:
           cp LICENSE.txt build/
 
       - name: Build using Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '25.x'
           cache: 'npm'
@@ -29,7 +29,7 @@ jobs:
       - run: npm run build
 
       - name: Upload generated CSS
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: generated_css
           path: build
@@ -42,12 +42,12 @@ jobs:
 
     steps:
       - name: Download build directory
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: generated_css
 
       - name: Publish
-        uses: burnett01/rsync-deployments@7.0.1
+        uses: burnett01/rsync-deployments@v9
         with:
           switches: -acvz --delete
           path: ./
